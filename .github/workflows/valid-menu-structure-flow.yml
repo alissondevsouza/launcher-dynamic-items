@@ -1,0 +1,88 @@
+name: Validate Menu Structure Flow
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  validate-menu-structure:
+    name: Validate Menu Structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate commit messages
+        run: |
+          echo "Validating commit messages..."
+
+          COMMITS=$(git log --format=%s origin/develop..HEAD)
+
+          INVALID_COMMITS=""
+
+          while IFS= read -r commit; do
+            if [[ "$commit" =~ ^Merge || "$commit" =~ \[skip\ ci\] || "$commit" =~ ^chore:\ auto-update ]]; then
+              continue
+            fi
+            
+            if ! [[ "$commit" =~ ^(feat\(.+\):|feat:|fix:) ]]; then
+              INVALID_COMMITS="${INVALID_COMMITS}\n - ${commit}"
+            fi
+          done <<< "$COMMITS"
+
+          if [ -n "$INVALID_COMMITS" ]; then
+            echo "Commits inválidos encontrados - ${INVALID_COMMITS}"
+            echo "Mensagens de commit devem começar com:"
+            echo "  • feat(scope): - Para NOVO arquivo JSON (MAJOR bump)"
+            echo "  • feat:        - Para ADIÇÃO em arquivo existente (MINOR bump)"
+            echo "  • fix:         - Para CORREÇÃO de código (PATCH bump)"
+            exit 1
+          fi
+
+          echo "Todas as mensagens de commit são válidas!"
+
+      - name: Validate JSON syntax
+        run: |
+          for file in menu-configs/**/*.json; do
+            echo "Checking JSON syntax for $file..."
+            jq empty "$file" || exit 1
+          done
+
+      - name: Run schema validation
+        run: npm run validate-menu-structure
+
+      - name: Check formatting
+        run: npm run lint
+
+      - name: Generate validation report
+        if: always()
+        run: |
+          echo "### Files validated:" >> $GITHUB_STEP_SUMMARY
+          find menu-configs -name "*.json" -type f | while read file; do
+            echo "- \`$file\`" >> $GITHUB_STEP_SUMMARY
+          done
+
+      - name: Comment on PR
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '**Validation Failed**\n\nPlease check the workflow logs for details and fix the validation errors before merging.'
+            })

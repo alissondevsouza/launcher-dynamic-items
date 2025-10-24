@@ -1,0 +1,25 @@
+{
+  "name": "launcher-dynamic-items",
+  "version": "1.0.0",
+  "description": "Centralized repository for managing dynamic menu items for the Launcher application",
+  "main": "index.js",
+  "scripts": {
+    "validate-menu-structure": "node scripts/validate-menu-structure.js",
+    "set-semantic-version": "node scripts/set-semantic-version.js",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "npm run validate-menu-structure",
+    "prepare": "node scripts/set-github-hooks.js"
+  },
+  "author": "Alisson Souza",
+  "devDependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "chalk": "^4.1.2",
+    "glob": "^10.3.10",
+    "prettier": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

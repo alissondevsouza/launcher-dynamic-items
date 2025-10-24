@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://launcher-dynamic-items/menu-config.schema.json",
+  "title": "Menu Configuration Schema",
+  "description": "Schema for validating dynamic menu configuration files",
+  "type": "object",
+  "required": ["version", "lastUpdate", "items"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "File version (semantic versioning)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0", "2.1.3"]
+    },
+    "lastUpdate": {
+      "type": "string",
+      "description": "Last update date (ISO 8601)",
+      "format": "date-time",
+      "examples": ["2025-10-21T00:00:00Z"]
+    },
+    "items": {
+      "type": "array",
+      "description": "List of menu items",
+      "items": {
+        "$ref": "#/definitions/menuItem"
+      }
+    }
+  },
+  "definitions": {
+    "menuItem": {
+      "type": "object",
+      "required": ["id", "key", "labelKey", "translations", "rules"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the item",
+          "pattern": "^[a-zA-Z0-9-_]+$",
+          "minLength": 3,
+          "examples": ["analytics-a06", "custom-item-01"]
+        },
+        "key": {
+          "type": "string",
+          "description": "Key for internal reference",
+          "pattern": "^[a-zA-Z0-9-_]+$",
+          "minLength": 3,
+          "examples": ["reports-a06", "custom-key"]
+        },
+        "labelKey": {
+          "type": "string",
+          "description": "Translation key for the label",
+          "pattern": "^[a-zA-Z0-9._-]+$",
+          "minLength": 3,
+          "examples": ["menu.reports.analytics.a06"]
+        },
+        "translations": {
+          "type": "object",
+          "description": "Translations of the item in different languages",
+          "required": ["pt-br", "en", "es"],
+          "properties": {
+            "pt-br": {
+              "type": "string",
+              "description": "Translation in Portuguese (Brazil)",
+              "minLength": 1
+            },
+            "en": {
+              "type": "string",
+              "description": "Translation in English",
+              "minLength": 1
+            },
+            "es": {
+              "type": "string",
+              "description": "Translation in Spanish",
+              "minLength": 1
+            }
+          }
+        },
+        "rules": {
+          "type": "array",
+          "description": "Permission rules (array of arrays, where each sub-array is an OR of permissions)",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "description": "Permission name",
+              "pattern": "^[A-Z_]+$",
+              "examples": ["REPORT_READ", "REPORT_WRITE", "FENCE_READ"]
+            }
+          }
+        },
+        "dashboardId": {
+          "type": "string",
+          "description": "Dashboard ID (UUID)",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "examples": ["2e0538c8-28ed-4be3-aaa1-b863be5d80d4"]
+        }
+      }
+    }
+  }
+}
