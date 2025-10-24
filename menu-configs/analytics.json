@@ -85,6 +85,18 @@
       },
       "rules": [["FENCE_READ", "FENCE_WRITE"]],
       "dashboardId": "ec9a4020-045a-4d91-873b-c364448a6df6"
+    },
+    {
+      "id": "analytics-teste",
+      "key": "reports-teste",
+      "labelKey": "menu.reports.analytics.teste",
+      "translations": {
+        "pt-br": "Teste",
+        "en": "Test",
+        "es": "Test"
+      },
+      "rules": [["FENCE_READ", "FENCE_WRITE"]],
+      "dashboardId": "ec9a4020-045a-4d91-873b-c364448a6df7"
     }
   ]
 }
