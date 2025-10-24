@@ -97,6 +97,18 @@
       },
       "rules": [["FENCE_READ", "FENCE_WRITE"]],
       "dashboardId": "ec9a4020-045a-4d91-873b-c364448a6df7"
+    },
+    {
+      "id": "analytics-fence-teste-2",
+      "key": "reports-fence-teste-2",
+      "labelKey": "menu.reports.analytics.fences-teste-2",
+      "translations": {
+        "pt-br": "Teste 2",
+        "en": "Test 2",
+        "es": "Test 2"
+      },
+      "rules": [["FENCE_READ", "FENCE_WRITE"]],
+      "dashboardId": "ec9a4020-045a-4d91-873b-c364448a6df7"
     }
   ]
 }
