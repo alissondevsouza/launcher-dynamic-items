@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "lastUpdate": "2025-10-27T13:16:48.758Z",
+  "version": "1.0.1",
+  "lastUpdate": "2025-10-27T13:50:19.300Z",
   "items": [
     {
       "id": "analytics-a06",
@@ -11,7 +11,12 @@
         "en": "Journey reports",
         "es": "Informe de recorridos"
       },
-      "rules": [["REPORT_READ", "REPORT_WRITE"]],
+      "rules": [
+        [
+          "REPORT_READ",
+          "REPORT_WRITE"
+        ]
+      ],
       "dashboardId": "2e0538c8-28ed-4be3-aaa1-b863be5d80d4"
     },
     {
@@ -23,7 +28,12 @@
         "en": "Vehicle reports",
         "es": "Informe de vehículos"
       },
-      "rules": [["REPORT_READ", "REPORT_WRITE"]],
+      "rules": [
+        [
+          "REPORT_READ",
+          "REPORT_WRITE"
+        ]
+      ],
       "dashboardId": "9ff02494-f060-4bb3-aa1a-7324370711da"
     },
     {
@@ -35,7 +45,12 @@
         "en": "Engine idling report",
         "es": "Informe de paradas con motor encendido"
       },
-      "rules": [["REPORT_READ", "REPORT_WRITE"]],
+      "rules": [
+        [
+          "REPORT_READ",
+          "REPORT_WRITE"
+        ]
+      ],
       "dashboardId": "3127bfba-2d51-4223-9dd1-084e87582154"
     },
     {
@@ -47,7 +62,12 @@
         "en": "GPS report",
         "es": "Informe de GPS"
       },
-      "rules": [["REPORT_READ", "REPORT_WRITE"]],
+      "rules": [
+        [
+          "REPORT_READ",
+          "REPORT_WRITE"
+        ]
+      ],
       "dashboardId": "98b885f8-68df-4d95-857f-b7e22fdf851d"
     },
     {
@@ -59,7 +79,12 @@
         "en": "Driver reports",
         "es": "Informe de conductores"
       },
-      "rules": [["REPORT_READ", "REPORT_WRITE"]],
+      "rules": [
+        [
+          "REPORT_READ",
+          "REPORT_WRITE"
+        ]
+      ],
       "dashboardId": "e4c2bce5-c8c2-4c9f-8165-d5a933d1c324"
     },
     {
@@ -71,7 +96,12 @@
         "en": "Ticket reports",
         "es": "Informe de llamados"
       },
-      "rules": [["REPORT_READ", "REPORT_WRITE"]],
+      "rules": [
+        [
+          "REPORT_READ",
+          "REPORT_WRITE"
+        ]
+      ],
       "dashboardId": "af6956e5-36dd-480c-93e7-cb304b52b3eb"
     },
     {
@@ -83,7 +113,12 @@
         "en": "Fences",
         "es": "Informe de geozonas"
       },
-      "rules": [["FENCE_READ", "FENCE_WRITE"]],
+      "rules": [
+        [
+          "FENCE_READ",
+          "FENCE_WRITE"
+        ]
+      ],
       "dashboardId": "ec9a4020-045a-4d91-873b-c364448a6df6"
     }
   ]
