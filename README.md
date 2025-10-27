@@ -28,20 +28,48 @@ Este repositório armazena configurações de menus em formato JSON que são con
 
 ## Como Utilizar
 
-### 1. Clone o repositório
+### 1. Clone o repositório (primeira vez)
 
 ```bash
 git clone <repository-url>
 cd launcher-dynamic-items
 ```
 
-### 2. Crie nova branch apartir da devlop
+**Se já tiver o projeto clonado, pule para o passo 2.**
+
+### 2. Atualize a branch develop
+
+**Antes de criar uma nova branch, sempre atualize a develop:**
+
+```bash
+# Mude para a branch develop
+git checkout develop
+
+# Baixe as últimas alterações (use --rebase para manter histórico limpo)
+git pull --rebase origin develop
+```
+
+**Se aparecer erro de "divergent branches":**
+
+Isso acontece quando o bot fez commits automáticos. Use `--rebase` para resolver:
+
+```bash
+git pull --rebase origin develop
+```
+
+**Dica:** Configure rebase como padrão para este projeto:
+
+```bash
+git config pull.rebase true
+```
+
+### 3. Crie nova branch a partir da develop
 
 ```bash
 git checkout -b feature/nome-da-branch
 ```
 
-### 3. Instale as dependências
+### 4. Instale as dependências
 
 ```bash
 npm install
