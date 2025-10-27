@@ -45,8 +45,22 @@ cd launcher-dynamic-items
 # Mude para a branch develop
 git checkout develop
 
-# Baixe as últimas alterações
-git pull origin develop
+# Baixe as últimas alterações (use --rebase para manter histórico limpo)
+git pull --rebase origin develop
+```
+
+**Se aparecer erro de "divergent branches":**
+
+Isso acontece quando o bot fez commits automáticos. Use `--rebase` para resolver:
+
+```bash
+git pull --rebase origin develop
+```
+
+**Dica:** Configure rebase como padrão para este projeto:
+
+```bash
+git config pull.rebase true
 ```
 
 ### 3. Crie nova branch a partir da develop
